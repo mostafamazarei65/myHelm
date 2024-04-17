@@ -16,7 +16,7 @@ serviceMonitor:
 endpoints:
   name: mariadb-145-databases-service
   app: mariadb-145-databases-service
-  ip: 172.31.3.27
+  ip: 192.168.1.145
   mysqlExporterPort: 9104
   mysqlExporterPortName: mariadb-145-mysql-exporter
   netdataPort: 19999
