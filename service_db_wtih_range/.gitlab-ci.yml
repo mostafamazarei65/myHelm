@@ -1,0 +1,30 @@
+stages:
+  - lint
+  - deploy
+
+
+variables:
+
+  BALY_OKD_NAMESPACE: baly-business-metrics
+  BALY_HOST: https://api.okd.eu-central-1.cloud.baly.app:6443
+
+helm_lint:
+  stage: lint
+  image:
+    name: alpine/helm:3.3.4
+    entrypoint: ["/bin/sh", "-c"]
+
+  script:
+    - |
+      helm lint .
+
+deploy:
+  stage: deploy
+  when: manual
+  only:
+    - master
+  script:
+    - helm upgrade --install  --kube-token ${OKD4_TOKEN} --kube-apiserver ${BALY_HOST} --namespace ${BALY_OKD_NAMESPACE}
+
+
+    

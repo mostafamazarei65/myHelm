@@ -1,0 +1,17 @@
+{{- range .Values.db }}
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: {{ .name }}-databases-service
+  labels:
+    app: {{ .name }}-databases-service
+subsets:
+  - addresses:
+      - ip: {{ .ip }}
+    ports:
+      - port: 9104
+        name: {{ .portsName }}-exporter
+      - port: 19999
+        name: {{ .portsName }}-netdata
+{{- end }}

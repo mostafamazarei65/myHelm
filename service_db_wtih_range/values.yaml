@@ -1,0 +1,20 @@
+db:
+  - name: mariadb-27
+    portsName: mariadb-27-mysql
+    ip: 172.31.3.27
+
+  - name: mariadb-145
+    portsName: mariadb-145-mysql
+    ip: 172.31.4.145
+
+  - name: mariadb-221
+    portsName: mariadb-221-mysql
+    ip: 172.31.5.221
+
+  - name: postgres-29
+    portsName: postgres-29-pg
+    ip: 172.31.3.29
+
+  - name: postgres-155
+    portsName: postgres-155-pg
+    ip: 172.31.4.155

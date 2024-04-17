@@ -1,0 +1,19 @@
+{{- range .Values.db }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .name }}-databases-service
+  labels:
+    app: {{ .name }}-databases-service
+spec:
+  ports:
+    - name: {{ .name }}-mysql-exporter
+      protocol: "TCP"
+      port: 9104
+      targetPort: 9104
+    - name: {{ .name }}-netdata
+      protocol: "TCP"
+      port: 19999
+      targetPort: 19999
+{{- end }}

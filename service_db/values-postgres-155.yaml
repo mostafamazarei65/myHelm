@@ -1,0 +1,35 @@
+serviceMonitor:
+  name: postgres-155-databases-monitor
+  labels:
+    app: postgres-155-databases-service
+  endpoints:
+    - name: postgres-155-mysql-exporter
+      interval: 1m
+      path: /metrics
+    - name: postgres-155-netdata
+      interval: 1m
+      path: /api/v1/allmetrics?format=prometheus_all_hosts&timestamps=no
+    - name: postgres-155-netdata
+      interval: 1m
+      path: /api/v1/allmetrics?format=prometheus_all_hosts&source=as-collected&timestamps=no
+
+endpoints:
+  name: postgres-155-databases-service
+  app: postgres-155-databases-service
+  ip: 172.31.3.27
+  mysqlExporterPort: 9104
+  mysqlExporterPortName: postgres-155-mysql-exporter
+  netdataPort: 19999
+  netdataPortName: postgres-155-netdata
+
+service:
+  name: postgres-155-databases-service
+  app: postgres-155-databases-service
+  protocol: TCP
+  ports:
+    - name: postgres-155-mysql-exporter
+      port: 9104
+      targetPort: 9104
+    - name: postgres-155-netdata
+      port: 19999
+      targetPort: 19999

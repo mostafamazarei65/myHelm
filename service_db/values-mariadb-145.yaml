@@ -1,0 +1,35 @@
+serviceMonitor:
+  name: mariadb-145-databases-monitor
+  labels:
+    app: mariadb-145-databases-service
+  endpoints:
+    - name: mariadb-145-mysql-exporter
+      interval: 1m
+      path: /metrics
+    - name: mariadb-145-netdata
+      interval: 1m
+      path: /api/v1/allmetrics?format=prometheus_all_hosts&timestamps=no
+    - name: mariadb-145-netdata
+      interval: 1m
+      path: /api/v1/allmetrics?format=prometheus_all_hosts&source=as-collected&timestamps=no
+
+endpoints:
+  name: mariadb-145-databases-service
+  app: mariadb-145-databases-service
+  ip: 172.31.3.27
+  mysqlExporterPort: 9104
+  mysqlExporterPortName: mariadb-145-mysql-exporter
+  netdataPort: 19999
+  netdataPortName: mariadb-145-netdata
+
+service:
+  name: mariadb-145-databases-service
+  app: mariadb-145-databases-service
+  protocol: TCP
+  ports:
+    - name: mariadb-145-mysql-exporter
+      port: 9104
+      targetPort: 9104
+    - name: mariadb-145-netdata
+      port: 19999
+      targetPort: 19999
