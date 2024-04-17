@@ -1,39 +1,3 @@
-# endpoints:
-#   name: mariadb-221-databases-endpoints
-#   ip: "172.31.3.27"
-#   mysqlExporterPort: 9104
-#   mysqlExporterPortName: "mariadb-221-mysql-exporter"
-#   netdataPort: 19999
-#   netdataPortName: "mariadb-221-netdata"
-
-
-# service:
-#   name: mariadb-221-databases-service
-#   ports:
-#     - name: mariadb-221-mysql-exporter
-#       protocol: TCP
-#       port: 9104
-#       targetPort: 9104
-#     - name: mariadb-221-netdata
-#       protocol: TCP
-#       port: 19999
-#       targetPort: 19999
-
-# serviceMonitor:
-#   name: mariadb-221-databases-monitor
-#   labels:
-#     app: mariadb-221-databases-service
-#   endpoints:
-#     - port: mariadb-221-mysql-exporter
-#       interval: 1m
-#       path: "/metrics"
-#     - port: mariadb-221-netdata
-#       interval: 1m
-#       path: "/api/v1/allmetrics?format=prometheus_all_hosts&timestamps=no"
-#     - port: mariadb-221-netdata
-#       interval: 1m
-#       path: "/api/v1/allmetrics?format=prometheus_all_hosts&source=as-collected&timestamps=no"
-
 serviceMonitor:
   name: mariadb-221-databases-monitor
   labels:
@@ -52,7 +16,7 @@ serviceMonitor:
 endpoints:
   name: mariadb-221-databases-service
   app: mariadb-221-databases-service
-  ip: 172.31.3.27
+  ip: 192.168.1.221
   mysqlExporterPort: 9104
   mysqlExporterPortName: mariadb-221-mysql-exporter
   netdataPort: 19999
