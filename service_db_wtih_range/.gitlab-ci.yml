@@ -5,8 +5,8 @@ stages:
 
 variables:
 
-  BALY_OKD_NAMESPACE: baly-business-metrics
-  BALY_HOST: https://api.okd.eu-central-1.cloud.baly.app:6443
+  BALY_OKD_NAMESPACE: baly-businessmetrics
+  BALY_HOST: https://api.okd.eu-central-1.app:6443
 
 helm_lint:
   stage: lint
@@ -24,7 +24,4 @@ deploy:
   only:
     - master
   script:
-    - helm upgrade --install  --kube-token ${OKD4_TOKEN} --kube-apiserver ${BALY_HOST} --namespace ${BALY_OKD_NAMESPACE}
-
-
-    
+    - helm upgrade --install  --kube-token ${OKD4_TOKEN} --kube-apiserver ${BALY_HOST} --namespace ${OKD_NAMESPACE}
